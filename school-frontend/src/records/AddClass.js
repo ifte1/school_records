@@ -31,6 +31,7 @@ export default function AddClass() {
                 <div className='mb-3'>
                     <label htmlFor='Name' className='form-label'>
                         Class Name
+                        <span style={{color:'red'}}>*</span>
                     </label>
                     <input
                     type={'text'} className='form-control'
@@ -38,6 +39,7 @@ export default function AddClass() {
                     name='class_name'
                     value={class_name}
                     onChange={(e)=>onInputChange(e)}
+                    required
                     /> 
   
                 </div>

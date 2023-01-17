@@ -5,15 +5,15 @@ import { Link,useParams } from 'react-router-dom';
 export default function Home() {
     let cid=useParams();
     console.log(cid);
-    const [classes,setClasses]=useState([])
+    const [section,setsection]=useState([])
     
     useEffect(()=>{
-        loadClasses();
+        loadsection();
         
     },[])
-    const loadClasses=async()=>{
+    const loadsection=async()=>{
         const result=await axios.get(`http://localhost:8080/sections/${cid.id}`)
-        setClasses(result.data);
+        setsection(result.data);
     }
   return (
     <div className='container'>
@@ -31,13 +31,13 @@ export default function Home() {
   </thead>
   <tbody>
     {
-        classes.map((clas)=>(
+        section.map((sec)=>(
             <tr>
-             <td>{clas.id}</td>
-             <td>{clas.section_name}</td>
+             <td>{sec.id}</td>
+             <td>{sec.section_name}</td>
              
              <td>
-                <Link className='btn btn-outline-primary mx-1' to={`/Student/${clas.id}`}>Enter</Link>
+                <Link className='btn btn-outline-primary mx-1' to={`/Student/${sec.id}`}>Enter</Link>
              </td>
             
             </tr>

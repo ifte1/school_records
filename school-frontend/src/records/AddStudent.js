@@ -6,7 +6,7 @@ export default function AddStudent(props) {
     let navigate=useNavigate()
     let params=useParams();
     console.log(params);
-    const[user,setUser]=useState({
+    const[student,setstudent]=useState({
      name:"",
      date_of_birth:"",
      gender:"",
@@ -14,17 +14,16 @@ export default function AddStudent(props) {
      contact_number:"",
      section_id: params.id
     });
-    const{name,date_of_birth,gender,guardian,contact_number,section_id}=user
+    const{name,date_of_birth,gender,guardian,contact_number,section_id}=student
     const onInputChange=(e)=>{
-    setUser({...user,[e.target.name]:e.target.value})    
+    setstudent({...student,[e.target.name]:e.target.value})    
 
     };
     const onSubmit=async(e)=>{
         e.preventDefault();
-        await axios.post("http://localhost:8080/student",user)
+        await axios.post("http://localhost:8080/student",student)
 
         navigate(`/student/${params.id}`)
-        //navigate("/")
 
     }
 
@@ -102,7 +101,7 @@ export default function AddStudent(props) {
                 <button type='submit' className='btn btn-outline-primary'>
                     Submit
                 </button>
-                <Link type='Cancel' className='btn btn-outline-danger mx-2' to="/">
+                <Link type='Cancel' className='btn btn-outline-danger mx-2' to={`/student/${params.id}`}>
                     Cancel
                 </Link>
                 </form>
